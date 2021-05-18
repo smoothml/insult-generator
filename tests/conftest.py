@@ -1,7 +1,7 @@
 import pytest
 from fastapi.testclient import TestClient
 
-from insult_generator.app import app, get_db
+from insult_generator.app import app
 from insult_generator.entities import Insult
 
 
