@@ -11,7 +11,7 @@ uvicorn = "^0.13.4"
 requests = "^2.25.1"
 
 [tool.poetry.dev-dependencies]
-pytest = "^5.2"
+pytest = "^6.2"
 black = "^20.8b1"
 isort = "^5.8.0"
 coverage = "^5.5"
@@ -54,3 +54,17 @@ exclude = '''
 [tool.isort]
 profile = "black"
 multi_line_output = 3
+src_paths = ["insult_generator", "tests"]
+
+[tool.coverage.run]
+include = ["insult_generator/*"]
+omit = ["tests/*"]
+data_file = ".coverage"
+relative_files = true
+
+[tool.coverage.report]
+precision = 2
+
+[tool.pytest.ini_options]
+addopts = "--cache-clear --cov"
+testpaths = "tests"
