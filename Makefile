@@ -1,5 +1,9 @@
 .DEFAULT_GOAL := help
 
+.PHONY: install
+install: ## Install dependencies
+	poetry install
+
 .PHONY: test
 test: ## Run tests
 	poetry run pytest
