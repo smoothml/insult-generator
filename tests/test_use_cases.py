@@ -1,4 +1,21 @@
-from insult_generator.use_cases import insult_anyone, insult_someone
+from insult_generator.use_cases import get_insult, insult_anyone, insult_someone
+
+
+def test_get_insult_anyone(fixed_insult, fake_insult_db):
+    expected = f"Thou {' '.join(fixed_insult)}"
+
+    insult = get_insult(fake_insult_db)
+
+    assert insult == expected
+
+
+def test_get_insult_someone(fixed_insult, fake_insult_db):
+    name = "Paul"
+    expected = f"Paul, thou {' '.join(fixed_insult)}"
+
+    insult = get_insult(fake_insult_db, name)
+
+    assert insult == expected
 
 
 def test_insult_anyone(fixed_insult, fake_insult_db):

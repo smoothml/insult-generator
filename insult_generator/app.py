@@ -4,7 +4,7 @@ import uvicorn
 from fastapi import Depends, FastAPI
 
 from insult_generator.interfaces import InsultDB
-from insult_generator.use_cases import insult_anyone, insult_someone
+from insult_generator.use_cases import get_insult
 
 app = FastAPI()
 
@@ -20,10 +20,7 @@ async def heartbeat():
 
 @app.get("/insult")
 async def insult(name: str = None, db: InsultDB = Depends(get_db)):
-    if name is not None:
-        insult_to_use = insult_someone(db, name)
-    else:
-        insult_to_use = insult_anyone(db)
+    insult_to_use = get_insult(db, name)
     return json.dumps({"message": insult_to_use})
 
 
